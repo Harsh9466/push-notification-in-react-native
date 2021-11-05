@@ -1,0 +1,68 @@
+{
+    "project_info": {
+        "project_number": "103889418143",
+        "project_id": "pushnotification-8a62f",
+        "storage_bucket": "pushnotification-8a62f.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:103889418143:android:d56957ff9149055a716faa",
+                "android_client_info": {
+                    "package_name": "com.harsh9466.airtel"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "103889418143-6h3res9dqc0iis7n1i2cs9ng6vf5prsv.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyCs5wto2p1puEf2wurQPlmXU4psT2tlnrM"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "103889418143-6h3res9dqc0iis7n1i2cs9ng6vf5prsv.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:103889418143:android:2ee10a892be039fe716faa",
+                "android_client_info": {
+                    "package_name": "com.harshsoni.pushnotification"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "103889418143-6h3res9dqc0iis7n1i2cs9ng6vf5prsv.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyCs5wto2p1puEf2wurQPlmXU4psT2tlnrM"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "103889418143-6h3res9dqc0iis7n1i2cs9ng6vf5prsv.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
