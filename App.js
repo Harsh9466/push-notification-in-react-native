@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from "react";
-import SendNotification from "./SendNotification";
-import { Button, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
-import Constants from "expo-constants";
-
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-    priority: "high",
-  }),
-});
-
 export default function App() {
   const [token, setToken] = useState();
+  const [inputToken, setInputToken] = useState("");
+  const [message, setMessage] = useState("");
 
   const registerForPushNotificationsAsync = async () => {
     let token = await Notifications.getExpoPushTokenAsync();
     setToken(token.data);
   };
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+      priority: "normal",
+    }),
+  });
 
   const sendPushNotification = async () => {
-    const message = {
-      to: token,
-      sound: "default",
-      title: "Original Title",
-      body: "And here is the body!",
-      data: { data: "goes here" },
-    };
     await fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",
       headers: {
@@ -37,10 +34,15 @@ export default function App() {
         "Accept-encoding": "gzip, deflate",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(message),
+      body: JSON.stringify({
+        to: inputToken,
+        sound: "default",
+        title: "New message",
+        body: message,
+      }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setMessage(""));
   };
 
   useEffect(() => {
@@ -49,11 +51,31 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={{ marginBottom: 10 }}>Device token : {token}</Text>
+      <Text>Your device token </Text>
+      <Text selectable={true} style={{ marginVertical: 10 }}>
+        {token}
+      </Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setInputToken}
+        value={inputToken}
+        placeholder="ExponentPushToken[*****]"
+        keyboardType="default"
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={setMessage}
+        value={message}
+        placeholder="Enter your message"
+        keyboardType="default"
+      />
       <Button
         title="Send Notification"
-        onPress={() => sendPushNotification()}
+        onPress={() => {
+          sendPushNotification();
+        }}
       />
+      <Text>Updated App</Text>
     </View>
   );
 }
@@ -64,5 +86,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    width: "80%",
+    marginTop: 50,
   },
 });
